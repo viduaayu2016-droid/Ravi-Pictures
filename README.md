@@ -1,31 +1,17 @@
-# Ravi Pictures website
+# Ravi Pictures
 
-Static website prepared for GitHub and Cloudflare Pages.
+Responsive orange-and-black homepage with editable text, services, studio information, image gallery filters, enlarged image previews, a video gallery link, and an email enquiry form.
 
-## Deployment settings
-
-- Production branch: `main`
-- Framework preset: None
-- Build command: leave empty
-- Build output directory: `public`
-- Root directory: repository root
-
-Connect this repository through Cloudflare Pages Git integration. Each push to main then deploys the site automatically. No API tokens or GitHub Actions secrets are required for the native integration.
-
-## Files
-
-- `public/index.html`: page and interactions
-- `public/design-reference.png`: supplied design artwork
-- `public/_headers`: response headers
-
-The current design uses the supplied reference image with accessible interactive overlays. Text within the artwork is not editable HTML. The showreel opens the original website's video gallery. Project enquiries use email.
+## Cloudflare Pages
+Production branch: main. Framework: None. Build command: empty. Output directory: public.
 
 ## Preview
+Open public/index.html. An internet connection loads Google Fonts; all imagery is local.
 
-Open `public/index.html` in a browser.
+## Images
+hero-hd.png is AI-generated cinematic artwork. Photographs in public/images are illustrative Unsplash photography downloaded at 2000px width, not actual client productions. The original design reference is retained for comparison.
 
-## Custom domain
+Generated hero prompt (built-in ImageGen): Cinematic photographic film production set, professional camera in the right foreground, amber lights and crew silhouettes, dark negative space on the left, sharp camera details, orange and black palette, no text or logos.
 
-After verifying the Cloudflare preview, add a custom domain through the Pages project's Custom domains section. The existing ravipictures.com domain has not been changed.
-
-Cloudflare documentation: https://developers.cloudflare.com/pages/get-started/git-integration/
+## Functionality
+Gallery filters and image previews work locally. Enquiries prepare an email in the visitor's email application; they are not sent or stored automatically. The showreel links to the original Ravi Pictures video gallery pending a production reel. The original ravipictures.com domain is unchanged.
