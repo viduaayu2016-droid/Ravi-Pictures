@@ -12,3 +12,6 @@
 
 /* Consistent dimensions for every moving frame. */
 .reel-ring figure,.reel-ring figure:nth-child(2),.reel-ring figure:nth-child(3){width:264px;height:340px;margin:-170px 0 0 -132px}.reel-ring img,.reel-ring figure:nth-child(2) img,.reel-ring figure:nth-child(3) img{object-fit:cover;object-position:center}@media(max-width:550px){.reel-ring figure,.reel-ring figure:nth-child(2),.reel-ring figure:nth-child(3){width:198px;height:255px;margin:-127.5px 0 0 -99px}}
+
+/* Align the open reel with the About copy after removing studio pointers. */
+.about{align-items:start}.about-visual{padding-top:0}.about .reel-stage{margin-top:-20px}@media(max-width:900px){.about .reel-stage{margin-top:0}}
