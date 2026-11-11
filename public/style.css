@@ -20,4 +20,4 @@
 header nav{gap:clamp(15px,1.8vw,28px)}header nav a{font-size:clamp(12px,1vw,14px);font-weight:600}@media(max-width:900px){header nav{gap:0}header nav a{font-size:14px}}
 
 /* Cinzel navigation with a stronger contrast against the hero. */
-header{background:linear-gradient(180deg,#050709f7,#050709b8)}header nav{gap:clamp(18px,2.5vw,42px)}header nav a{font-family:"Cinzel",Georgia,serif;font-size:clamp(15px,1.5vw,22px);font-weight:700;color:#fff;letter-spacing:.035em;text-shadow:0 2px 5px #000}header nav a:hover,header nav a.active{color:var(--orange)}@media(max-width:900px){header nav{gap:0}header nav a{font-size:17px}}
+header{background:linear-gradient(180deg,#050709f7,#050709b8)}header nav{gap:clamp(18px,2.5vw,42px)}header nav a{font-family:"Cinzel",Georgia,serif;font-size:clamp(14px,1.35vw,20px);font-weight:700;color:#fff;letter-spacing:.035em;text-shadow:0 2px 5px #000}header nav a:hover,header nav a.active{color:var(--orange)}@media(max-width:900px){header nav{gap:0}header nav a{font-size:16px}}
