@@ -137,3 +137,14 @@ header{background:linear-gradient(180deg,#050709f7,#050709b8)}header nav{gap:cla
 @keyframes rp-rig-ribbon-drop{0%{transform:scaleX(1.03)}8%{transform:scaleX(1.21)}13%{transform:scaleX(1.075)}20%{transform:scaleX(1.285)}26%,37%{transform:scaleX(1.11)}51%{transform:translateY(5px) scaleX(1.03)}68%,100%{transform:none}}
 @keyframes rp-rig-wheel-tug-cue{0%{transform:rotate(0)}8%{transform:rotate(-51deg)}13%{transform:rotate(-21deg)}20%{transform:rotate(-76deg)}29%,100%{transform:rotate(-68deg)}}
 @keyframes rp-rig-perfs-tug-cue{0%{stroke-dashoffset:0}8%{stroke-dashoffset:-20}13%{stroke-dashoffset:-8}20%{stroke-dashoffset:-30}29%,100%{stroke-dashoffset:-27}}
+
+/* Anchor each soft cone to the actual lens centre in the Fresnel SVG. */
+.about>.about-light .about-light-beam{
+ top:calc(6px + var(--fresnel-width)*.341);
+ right:calc(clamp(12px,3vw,48px) + var(--fresnel-width)*.665);
+ transform-origin:100% 0;
+ clip-path:none;
+ background:conic-gradient(from 180deg at 100% 0,transparent 0deg,transparent 23deg,#ff9b3420 40deg,#ffc0724f 65deg,#ffa94e36 74deg,#fda33b16 83deg,transparent 90deg,transparent 360deg);
+ mask-image:radial-gradient(ellipse 102% 111% at 100% 0,#000 0%,#000 15%,#000a 51%,transparent 97%);
+}
+@media(max-width:900px){.about>.about-light .about-light-beam{top:calc(4px + var(--fresnel-width)*.341)}}
