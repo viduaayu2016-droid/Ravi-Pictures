@@ -148,3 +148,9 @@ header{background:linear-gradient(180deg,#050709f7,#050709b8)}header nav{gap:cla
 @keyframes rp-rig-notice{0%,6.47%{transform:scaleX(.9) rotate(-6deg)}13.59%,20.06%{transform:scaleX(1) rotate(2deg)}28%,100%{transform:translateX(5px) scaleX(.72) skewY(-5deg) rotate(4deg)}}
 @keyframes rp-rig-wide-eyes{0%,9.06%{transform:none}15.53%,21.35%{transform:scale(1.24,1.32)}28%,100%{transform:translateX(9px) scale(.87,1)}}
 @keyframes rp-rig-far-eye{0%,20%{opacity:1;transform:none}28%,100%{opacity:.52;transform:scaleX(.43)}}
+
+/* Rotate the full rig into a right-facing run pose after the strip is released. */
+.rig-turn{transform-box:fill-box;transform-origin:53% 77%}
+.slate-scene[data-encounter] .rig-turn{animation:rp-rig-full-turn 4.25s ease-in-out both}
+@keyframes rp-rig-full-turn{0%,23.8%{transform:none}28%,100%{transform:translateX(3px) scaleX(.74) skewY(-5deg) rotate(4deg)}}
+@keyframes rp-rig-far-eye{0%,21%{opacity:1;transform:none}28%,100%{opacity:0;transform:scaleX(.25)}}
