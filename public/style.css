@@ -119,3 +119,32 @@ header{background:linear-gradient(180deg,#050709f7,#050709b8)}header nav{gap:cla
 
 /* Keep the lens and beam dark before the script initializes. */
 .about-light-beam,.about-light-pool,.about-lens{opacity:0}.about-light-lit .about-light-beam{opacity:.78}.about-light-lit .about-light-pool{opacity:.82}.about-light-lit .about-lens{opacity:1}
+
+/* Photographic set plate: keep the lamp cue and film pull live over the set. */
+.about{position:relative;isolation:isolate;background:#090808}
+.about::before,.about::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(90deg,#08080863 0%,#08080830 38%,transparent 60%),url("images/about-cinematic-set.jpg");background-position:center;background-size:100% 100%;background-repeat:no-repeat;opacity:0}
+.about::before{mask-image:linear-gradient(#000 0%,#000 53%,transparent 66%)}
+.about::after{mask-image:linear-gradient(transparent 53%,#000 66%);transition:opacity .65s ease}
+.about-light-running::before{animation:about-plate-ignite 3.15s linear both}
+.about-light-lit::before,.about-film-done::after{opacity:1}
+.about-light-lit .about-fresnel{opacity:0;transition:opacity .35s ease}
+.about-film-done .about-film-lane{opacity:0;transition:opacity .65s ease}
+@keyframes about-plate-ignite{0%,26%{opacity:0}27%{opacity:.09}31%,37%{opacity:0}38%{opacity:.15}42%{opacity:.025}49%{opacity:.12}86%,100%{opacity:1}}
+@media(min-width:901px){
+ .about{grid-template-columns:1.08fr 1fr;gap:clamp(35px,6vw,110px);min-height:clamp(620px,56.25vw,960px);padding-top:clamp(110px,11vw,190px)}
+ .about-fresnel{--fresnel-width:clamp(165px,19vw,310px);right:-22vw;top:calc(-8vw - 25px)}
+ .about-light-beam{right:-10vw;top:calc(-4vw - 18px)}
+ .about .reel-stage{scale:.92;transform-origin:center top}
+ .about-film-lane{width:128%;max-width:calc(100vw - 4.8vw)}
+}
+@media(max-width:900px){
+ .about::before,.about::after{background-size:auto 65%;background-position:59% top}
+ .about::before{mask-image:linear-gradient(#000 0%,#000 29%,transparent 59%)}
+ .about::after{display:none}
+ .about-film-done .about-film-lane{opacity:1}
+ .about-light-lit .about-fresnel{opacity:.67}
+}
+@media(prefers-reduced-motion:reduce){
+ .about::before,.about::after,.about-light-lit .about-fresnel,.about-film-done .about-film-lane{animation:none;transition:none}
+ .about-light-lit::after{opacity:1}
+}
