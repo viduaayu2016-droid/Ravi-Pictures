@@ -110,8 +110,8 @@ header{background:linear-gradient(180deg,#050709f7,#050709b8)}header nav{gap:cla
 @keyframes rp-rig-strip-pull{0%,100%{transform:none}20%,49%{transform:scaleX(1.14)}32%{transform:scaleX(1.085)}59%,76%{transform:scaleX(1.04)}}
 @keyframes rp-rig-wheel-feed{0%,100%{transform:rotate(0)}20%,49%{transform:rotate(-34deg)}32%{transform:rotate(-21deg)}59%,76%{transform:rotate(-10deg)}}
 @keyframes rp-rig-perfs{0%,100%{stroke-dashoffset:0}20%,49%{stroke-dashoffset:-16}32%{stroke-dashoffset:-10}59%,76%{stroke-dashoffset:-5}}
-@keyframes rp-rig-escape{0%{transform:var(--slate-caught,none)}11%{transform:translateX(11px)}17%{transform:translateX(8px)}24%{transform:translate(5px,-8px) scale(.96,1.08)}33%{transform:translate(10px,1px) scale(1.05,.93)}39%{transform:translate(0,-2px) rotate(10deg)}100%{transform:translate(150vw,0) rotate(13deg)}}
-@keyframes rp-rig-stumble-escape{0%{transform:var(--slate-caught,none)}11%{transform:translateX(11px)}17%{transform:translateX(8px)}24%{transform:translate(5px,-8px) scale(.96,1.08)}33%{transform:translate(-12px,1px) rotate(-24deg)}39%{transform:translate(-18px,-2px) rotate(12deg)}100%{transform:translate(150vw,0) rotate(13deg)}}
+@keyframes rp-rig-escape{0%{transform:var(--slate-caught,none)}11%{transform:translateX(11px)}17%{transform:translateX(8px)}24%{transform:translate(5px,-8px) scale(.96,1.08)}33%{transform:translate(10px,1px) scale(1.05,.93)}39%{transform:translate(0,-2px) rotate(-10deg)}100%{transform:translate(-150vw,0) rotate(-13deg)}}
+@keyframes rp-rig-stumble-escape{0%{transform:var(--slate-caught,none)}11%{transform:translateX(11px)}17%{transform:translateX(8px)}24%{transform:translate(5px,-8px) scale(.96,1.08)}33%{transform:translate(-12px,1px) rotate(-24deg)}39%{transform:translate(-18px,-2px) rotate(12deg)}100%{transform:translate(-150vw,0) rotate(-13deg)}}
 @keyframes rp-rig-notice{0%,10%{transform:scaleX(.9) rotate(-6deg)}21%,31%{transform:scaleX(1) rotate(2deg)}41%,100%{transform:rotate(-9deg)}}
 @keyframes rp-rig-wide-eyes{0%,14%{transform:none}24%,33%{transform:scale(1.24,1.32)}44%,100%{transform:none}}
 @keyframes rp-rig-let-go{0%{visibility:visible}38%,100%{visibility:hidden}}
@@ -132,25 +132,8 @@ header{background:linear-gradient(180deg,#050709f7,#050709b8)}header nav{gap:cla
 @keyframes rp-rig-strip-pull{0%,100%{transform:none}20%{transform:scaleX(1.22)}32%{transform:scaleX(1.08)}49%{transform:scaleX(1.29)}64%,76%{transform:scaleX(1.055)}}
 @keyframes rp-rig-wheel-feed{0%,100%{transform:rotate(0)}20%{transform:rotate(-53deg)}32%{transform:rotate(-22deg)}49%{transform:rotate(-78deg)}64%,76%{transform:rotate(-16deg)}}
 @keyframes rp-rig-perfs{0%,100%{stroke-dashoffset:0}20%{stroke-dashoffset:-21}32%{stroke-dashoffset:-8}49%{stroke-dashoffset:-31}64%,76%{stroke-dashoffset:-6}}
-@keyframes rp-rig-escape{0%{transform:var(--slate-caught,none)}8%{transform:translate(17px,-1px) rotate(3deg)}13%{transform:translate(7px,1px)}20%{transform:translate(23px,-2px) rotate(4deg)}24%{transform:translate(5px,-8px) scale(.96,1.08)}33%{transform:translate(10px,1px) scale(1.05,.93)}39%{transform:translate(0,-2px) rotate(10deg)}100%{transform:translate(150vw,0) rotate(13deg)}}
-@keyframes rp-rig-stumble-escape{0%{transform:var(--slate-caught,none)}8%{transform:translate(17px,-1px) rotate(3deg)}13%{transform:translate(7px,1px)}20%{transform:translate(23px,-2px) rotate(4deg)}24%{transform:translate(5px,-8px) scale(.96,1.08)}33%{transform:translate(-12px,1px) rotate(-24deg)}39%{transform:translate(-18px,-2px) rotate(12deg)}100%{transform:translate(150vw,0) rotate(13deg)}}
+@keyframes rp-rig-escape{0%{transform:var(--slate-caught,none)}8%{transform:translate(17px,-1px) rotate(3deg)}13%{transform:translate(7px,1px)}20%{transform:translate(23px,-2px) rotate(4deg)}24%{transform:translate(5px,-8px) scale(.96,1.08)}33%{transform:translate(10px,1px) scale(1.05,.93)}39%{transform:translate(0,-2px) rotate(-10deg)}100%{transform:translate(-150vw,0) rotate(-13deg)}}
+@keyframes rp-rig-stumble-escape{0%{transform:var(--slate-caught,none)}8%{transform:translate(17px,-1px) rotate(3deg)}13%{transform:translate(7px,1px)}20%{transform:translate(23px,-2px) rotate(4deg)}24%{transform:translate(5px,-8px) scale(.96,1.08)}33%{transform:translate(-12px,1px) rotate(-24deg)}39%{transform:translate(-18px,-2px) rotate(12deg)}100%{transform:translate(-150vw,0) rotate(-13deg)}}
 @keyframes rp-rig-ribbon-drop{0%{transform:scaleX(1.03)}8%{transform:scaleX(1.21)}13%{transform:scaleX(1.075)}20%{transform:scaleX(1.285)}26%,37%{transform:scaleX(1.11)}51%{transform:translateY(5px) scaleX(1.03)}68%,100%{transform:none}}
 @keyframes rp-rig-wheel-tug-cue{0%{transform:rotate(0)}8%{transform:rotate(-51deg)}13%{transform:rotate(-21deg)}20%{transform:rotate(-76deg)}29%,100%{transform:rotate(-68deg)}}
 @keyframes rp-rig-perfs-tug-cue{0%{stroke-dashoffset:0}8%{stroke-dashoffset:-20}13%{stroke-dashoffset:-8}20%{stroke-dashoffset:-30}29%,100%{stroke-dashoffset:-27}}
-
-/* Keep the tugs on their original beats; hold a right-facing pose during a slower exit. */
-.slate-scene[data-encounter] .slate-creature{animation-duration:4.25s;animation-timing-function:linear}
-.slate-scene[data-encounter] .rig-head,.slate-scene[data-encounter] .rig-eyes{animation-duration:4.25s}
-.slate-scene[data-encounter] .rig-eyes ellipse:first-child{animation:rp-rig-far-eye 4.25s ease both;transform-box:fill-box;transform-origin:center}
-.slate-scene[data-encounter] .rig-thigh-a,.slate-scene[data-encounter] .rig-arm-b,.slate-scene[data-encounter] .rig-thigh-b,.slate-scene[data-encounter] .rig-arm-a,.slate-scene[data-encounter] .rig-shin-a,.slate-scene[data-encounter] .rig-shin-b{animation-duration:.44s;animation-delay:1.04s;animation-iteration-count:8}
-@keyframes rp-rig-escape{0%{transform:var(--slate-caught,none)}5.18%{transform:translate(17px,-1px) rotate(3deg)}8.41%{transform:translate(7px,1px)}12.94%{transform:translate(23px,-2px) rotate(4deg)}15.53%{transform:translate(5px,-8px) scale(.96,1.08)}21.35%{transform:translate(10px,1px) scale(1.05,.93)}25.23%{transform:translate(0,-2px) rotate(10deg);animation-timing-function:ease-in}100%{transform:translate(105vw,0) rotate(13deg)}}
-@keyframes rp-rig-stumble-escape{0%{transform:var(--slate-caught,none)}5.18%{transform:translate(17px,-1px) rotate(3deg)}8.41%{transform:translate(7px,1px)}12.94%{transform:translate(23px,-2px) rotate(4deg)}15.53%{transform:translate(5px,-8px) scale(.96,1.08)}21.35%{transform:translate(-12px,1px) rotate(-24deg)}25.23%{transform:translate(-18px,-2px) rotate(12deg);animation-timing-function:ease-in}100%{transform:translate(105vw,0) rotate(13deg)}}
-@keyframes rp-rig-notice{0%,6.47%{transform:scaleX(.9) rotate(-6deg)}13.59%,20.06%{transform:scaleX(1) rotate(2deg)}28%,100%{transform:translateX(5px) scaleX(.72) skewY(-5deg) rotate(4deg)}}
-@keyframes rp-rig-wide-eyes{0%,9.06%{transform:none}15.53%,21.35%{transform:scale(1.24,1.32)}28%,100%{transform:translateX(9px) scale(.87,1)}}
-@keyframes rp-rig-far-eye{0%,20%{opacity:1;transform:none}28%,100%{opacity:.52;transform:scaleX(.43)}}
-
-/* Rotate the full rig into a right-facing run pose after the strip is released. */
-.rig-turn{transform-box:fill-box;transform-origin:53% 77%}
-.slate-scene[data-encounter] .rig-turn{animation:rp-rig-full-turn 4.25s ease-in-out both}
-@keyframes rp-rig-full-turn{0%,23.8%{transform:none}28%,100%{transform:translateX(3px) scaleX(.74) skewY(-5deg) rotate(4deg)}}
-@keyframes rp-rig-far-eye{0%,21%{opacity:1;transform:none}28%,100%{opacity:0;transform:scaleX(.25)}}
