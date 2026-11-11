@@ -28,7 +28,7 @@ const reelStage=document.querySelector('.reel-stage'),motionButton=document.quer
   const creature = scene?.querySelector('.slate-creature');
   if (!creature || !('IntersectionObserver' in window)) return;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const trigger = section.querySelector('.about-copy') || section;
+  const trigger = scene;
   const variants = ['caught', 'trip', 'peek', 'statue'];
   let bag = [];
   let last = '';

@@ -77,68 +77,49 @@ header{background:linear-gradient(180deg,#050709f7,#050709b8)}header nav{gap:cla
 @keyframes about-near-open{0%,44%{transform:scaleX(.56) translateX(3px)}90%,100%{transform:scaleX(1)}}
 @keyframes about-far-open{0%,44%{transform:scaleX(.7)}90%,100%{transform:scaleX(1)}}
 
-/* The supplied slate artwork is articulated behind the original moving frames. */
-.slate-scene{--slate-size:clamp(52px,6.2vw,98px);position:absolute;inset:auto 6% 67px auto;width:min(46%,260px);height:calc(var(--slate-size)*1.32);pointer-events:none}
-.slate-creature{position:absolute;width:var(--slate-size);height:auto;right:0;bottom:0;overflow:visible;mix-blend-mode:screen;transform-origin:center bottom;transform:translateX(-113%) rotate(-4deg)}
-.slate-creature-body,.slate-creature-head,.slate-creature-eyes,.slate-leg{transform-box:view-box}
-.slate-creature-body{transform-origin:320px 932px}
-.slate-creature-head{transform-origin:318px 564px}
-.slate-creature-eyes{transform-origin:335px 426px}
-.slate-leg-l{transform-origin:248px 738px}
-.slate-leg-r{transform-origin:376px 735px}
-.slate-hideout{position:absolute;right:-9px;bottom:0;width:calc(var(--slate-size)*1.16);height:calc(var(--slate-size)*1.07);border:1px solid #735337;border-radius:5px;background:linear-gradient(155deg,#221c17,#131313 30%,#090b0c 78%);box-shadow:inset 0 0 0 3px #ffffff0c,0 8px 17px #0007}
-.slate-hideout:before{content:"";position:absolute;width:34%;height:9%;border:1px solid #74614e;border-bottom:0;left:33%;top:-10%;border-radius:4px 4px 0 0;background:#131312}
-.slate-hideout:after{content:"";position:absolute;left:0;right:0;top:27%;border-top:1px solid #6e4a32;border-bottom:1px solid #111;height:4px}
-.slate-hideout i{position:absolute;width:8%;height:15%;top:21%;left:14%;border:1px solid #79634b;background:linear-gradient(#8d7457,#30291f);border-radius:1px}
-.slate-hideout i:nth-child(2){left:auto;right:14%}
-.slate-hideout i:nth-child(3){top:68%;left:31%;width:38%;height:15%;border-color:#524232;background:#201810}
-.slate-near .slate-scene:not([data-encounter]) .slate-creature{animation:rp-slate-roam 7.6s ease-in-out infinite both}
-.slate-near .slate-scene:not([data-encounter]) .slate-creature-head{animation:rp-slate-curiosity 7.6s ease-in-out infinite}
-.slate-near .slate-scene:not([data-encounter]) .slate-leg-l{animation:rp-slate-amble .45s ease-in-out infinite alternate}
-.slate-near .slate-scene:not([data-encounter]) .slate-leg-r{animation:rp-slate-amble .45s ease-in-out infinite alternate-reverse}
-.slate-scene[data-encounter]{--slate-duration:3.45s}
-.slate-scene[data-encounter] .slate-creature{animation:rp-slate-caught var(--slate-duration) linear both}
-.slate-scene[data-encounter="trip"] .slate-creature{animation-name:rp-slate-trip}
-.slate-scene[data-encounter="peek"] .slate-creature{animation-name:rp-slate-peek}
-.slate-scene[data-encounter="statue"] .slate-creature{animation-name:rp-slate-statue;--slate-duration:3.8s}
-.slate-scene[data-encounter] .slate-creature-head{animation:rp-slate-look var(--slate-duration) ease-in-out both}
-.slate-scene[data-encounter] .slate-creature-eyes{animation:rp-slate-eyes var(--slate-duration) ease-in-out both}
-.slate-scene[data-encounter] .slate-creature-body{animation:rp-slate-flinch var(--slate-duration) ease-in-out both}
-.slate-scene[data-encounter] .slate-leg-l{animation:rp-slate-dash-left var(--slate-duration) ease-in-out both}
-.slate-scene[data-encounter] .slate-leg-r{animation:rp-slate-dash-right var(--slate-duration) ease-in-out both}
-@keyframes rp-slate-roam{0%,100%{transform:translateX(-113%) rotate(-4deg)}22%{transform:translateX(-152%) rotate(-7deg)}37%{transform:translateX(-152%) rotate(2deg)}48%{transform:translateX(-83%) rotate(5deg)}62%{transform:translateX(-19%) scale(.88)}73%{transform:translateX(-38%) translateY(-15%) rotate(-8deg)}82%{transform:translateX(-13%) scale(.88)}}
-@keyframes rp-slate-curiosity{0%,100%{transform:rotate(-3deg)}27%{transform:rotate(8deg) scaleX(.86)}42%{transform:rotate(-6deg)}72%{transform:rotate(-10deg) scaleX(.92)}}
-@keyframes rp-slate-amble{from{transform:rotate(-8deg)}to{transform:rotate(9deg)}}
-@keyframes rp-slate-look{0%,8%{transform:scaleX(.84) rotate(-6deg)}23%,35%{transform:scaleX(1) rotate(0)}42%,51%{transform:scaleX(.84) rotate(10deg)}62%,75%{transform:rotate(-11deg)}100%{transform:none}}
-@keyframes rp-slate-eyes{0%,22%,100%{transform:scale(1)}29%,37%{transform:scale(1.2,1.26)}58%{transform:scale(1)}72%,80%{transform:scale(1.12)}}
-@keyframes rp-slate-flinch{0%,24%,100%{transform:none}32%{transform:scale(.93,1.12)}37%{transform:scale(1.08,.88)}51%{transform:scale(.96,1.04)}67%,94%{transform:scale(.89,.89)}76%,86%{transform:scale(.95,.95)}}
-@keyframes rp-slate-dash-left{0%,37%,66%,100%{transform:none}43%,53%,61%{transform:rotate(-22deg)}48%,57%{transform:rotate(21deg)}}
-@keyframes rp-slate-dash-right{0%,37%,66%,100%{transform:none}43%,53%,61%{transform:rotate(21deg)}48%,57%{transform:rotate(-22deg)}}
-@keyframes rp-slate-caught{0%,22%{transform:var(--slate-caught)}36%{transform:translate(-127%,-10%) rotate(-9deg)}43%{transform:translateX(-142%) rotate(-14deg)}64%,73%{transform:translateX(0) scale(.86)}82%,88%{transform:translate(-24%,-20%) rotate(-8deg)}94%,100%{transform:translateX(0) scale(.86)}}
-@keyframes rp-slate-trip{0%,22%{transform:var(--slate-caught)}34%{transform:translate(-114%,-8%) rotate(-8deg)}45%{transform:translateX(-84%) rotate(29deg)}51%{transform:translateX(-70%) rotate(-19deg) scale(1.06,.87)}68%,75%{transform:translateX(0) scale(.86)}83%,89%{transform:translate(-24%,-20%) rotate(-8deg)}96%,100%{transform:translateX(0) scale(.86)}}
-@keyframes rp-slate-peek{0%,19%{transform:var(--slate-caught)}26%{transform:translate(-45%,-18%) rotate(-12deg)}39%,61%{transform:translateX(0) scale(.86)}72%,82%{transform:translate(-27%,-22%) rotate(-8deg)}88%,100%{transform:translateX(0) scale(.86)}}
-@keyframes rp-slate-statue{0%,39%{transform:var(--slate-caught)}45%{transform:translateX(-115%) rotate(-10deg)}67%,74%{transform:translateX(0) scale(.86)}82%,89%{transform:translate(-25%,-20%) rotate(-9deg)}94%,100%{transform:translateX(0) scale(.86)}}
-@media(max-width:550px){.slate-scene{--slate-size:55px;right:5%;bottom:71px}}
-@media(prefers-reduced-motion:reduce){.slate-scene{display:none}}
 
-/* The slate and yellow reel sit alongside the About action, in their own clear lane. */
-.about-more-set{position:relative;isolation:isolate;display:flex;align-items:center;min-height:119px}
+/* Transparent jointed slate rig and the yellow film reel behind Know More. */
+.about-more-set{position:relative;isolation:isolate;display:flex;align-items:center;min-height:133px}
 .about-more-set>.outline{position:relative;z-index:1;background:#0a0d0e}
 .about-more-set>.outline:hover{background:var(--orange)}
-.about-more-set .slate-reel-scene{--slate-size:clamp(76px,8vw,114px);inset:0 auto 0 9px;width:min(100%,290px);height:auto;z-index:0}
-.slate-yellow-reel{position:absolute;left:70px;bottom:5px;width:clamp(86px,8.9vw,126px);height:auto;opacity:.88;filter:drop-shadow(0 0 10px #f8b42434)}
-.slate-yellow-wheel{transform-origin:center;transform-box:fill-box}
-.about-more-set .slate-creature{width:var(--slate-size);height:calc(var(--slate-size)*1.16);left:calc(70px + clamp(86px,8.9vw,126px) - 6px);right:auto;bottom:0;overflow:hidden;transform:translateX(0) rotate(-9deg);mix-blend-mode:screen}
-.about-more-set .slate-creature img{display:block;width:156%;max-width:none;height:auto;transform:translate(-23%,-11%);pointer-events:none}
-.slate-near .about-more-set .slate-scene:not([data-encounter]) .slate-creature{animation:rp-slate-check-reel 3.6s ease-in-out infinite both}
-.slate-near .about-more-set .slate-scene:not([data-encounter]) .slate-yellow-wheel{animation:rp-slate-nudge-reel 3.6s ease-in-out infinite both}
-.about-more-set .slate-scene[data-encounter] .slate-creature{animation:rp-slate-noticed 2.8s linear both}
-.about-more-set .slate-scene[data-encounter="trip"] .slate-creature{animation-name:rp-slate-noticed-trip}
-.about-more-set .slate-scene[data-encounter] .slate-yellow-wheel{animation:rp-slate-reel-settle .95s ease-out both}
-@keyframes rp-slate-check-reel{0%,100%{transform:translateX(0) rotate(-9deg)}23%,39%{transform:translateX(-9%) rotate(-14deg)}29%{transform:translate(-13%,-3%) rotate(-16deg)}63%{transform:translateX(2%) rotate(4deg)}}
-@keyframes rp-slate-nudge-reel{0%,23%{transform:rotate(0)}36%{transform:rotate(-18deg)}52%,100%{transform:rotate(-11deg)}}
-@keyframes rp-slate-reel-settle{0%{transform:rotate(-12deg)}60%{transform:rotate(-23deg)}100%{transform:rotate(-20deg)}}
-@keyframes rp-slate-noticed{0%,18%{transform:var(--slate-caught,rotate(-9deg))}30%{transform:rotate(0) scaleX(.95)}39%{transform:translateY(-10%) scale(.95,1.13)}47%{transform:translateX(7%) scale(1.08,.9)}56%{transform:translateX(-9%) rotate(-14deg)}92%,100%{transform:translateX(-110vw) rotate(-15deg)}}
-@keyframes rp-slate-noticed-trip{0%,18%{transform:var(--slate-caught,rotate(-9deg))}30%{transform:rotate(0)}39%{transform:translateY(-10%) scale(.95,1.13)}48%{transform:translateX(-18%) rotate(-24deg)}56%{transform:translateX(-32%) rotate(13deg)}92%,100%{transform:translateX(-110vw) rotate(-15deg)}}
-@media(max-width:550px){.about-more-set{min-height:105px}.about-more-set .slate-reel-scene{--slate-size:76px}}
-@media(prefers-reduced-motion:reduce){.about-more-set .slate-reel-scene{display:block}.about-more-set .slate-creature{display:none}}
+.slate-reel-scene{position:absolute;inset:auto auto 0 0;width:min(100%,330px);pointer-events:none}
+.slate-rig{display:block;width:100%;height:auto;overflow:visible}
+.slate-creature{transform-origin:0 0}
+.rig-head,.rig-eyes,.rig-slate-lid,.rig-arm-a,.rig-arm-b,.rig-thigh,.rig-shin,.slate-yellow-wheel{transform-box:fill-box}
+.rig-head{transform-origin:50% 97%}.rig-eyes{transform-origin:center}.rig-slate-lid{transform-origin:4% 90%}
+.rig-thigh{transform-box:view-box;transform-origin:0 0}.rig-shin{transform-box:view-box;transform-origin:0 0}
+.rig-arm-a{transform-origin:91% 0}.rig-arm-b{transform-origin:7% 0}
+.rig-run-arms{visibility:hidden}.slate-yellow-wheel{transform-origin:center}
+.slate-film-ribbon{transform-origin:119px 80px}
+.slate-near .slate-scene:not([data-encounter]) .slate-creature{animation:rp-rig-tug 3.8s ease-in-out infinite both}
+.slate-near .slate-scene:not([data-encounter]) .slate-film-ribbon{animation:rp-rig-strip-pull 3.8s ease-in-out infinite both}
+.slate-near .slate-scene:not([data-encounter]) .slate-yellow-wheel{animation:rp-rig-wheel-feed 3.8s ease-in-out infinite both}
+.slate-near .slate-scene:not([data-encounter]) .slate-perfs{animation:rp-rig-perfs 3.8s ease-in-out infinite both}
+.slate-scene[data-encounter] .slate-creature{animation:rp-rig-escape 2.75s ease-in-out both}
+.slate-scene[data-encounter="trip"] .slate-creature{animation-name:rp-rig-stumble-escape}
+.slate-scene[data-encounter] .rig-head{animation:rp-rig-notice 2.75s ease both}
+.slate-scene[data-encounter] .rig-eyes{animation:rp-rig-wide-eyes 2.75s ease both}
+.slate-scene[data-encounter] .rig-grip{animation:rp-rig-let-go 2.75s steps(1,end) both}
+.slate-scene[data-encounter] .rig-run-arms{animation:rp-rig-arms-visible 2.75s steps(1,end) both}
+.slate-scene[data-encounter] .rig-thigh-a,.slate-scene[data-encounter] .rig-arm-b{animation:rp-rig-hip .32s linear 1.04s 5}
+.slate-scene[data-encounter] .rig-thigh-b,.slate-scene[data-encounter] .rig-arm-a{animation:rp-rig-hip-b .32s linear 1.04s 5}
+.slate-scene[data-encounter] .rig-shin-a{animation:rp-rig-knee .32s linear 1.04s 5}
+.slate-scene[data-encounter] .rig-shin-b{animation:rp-rig-knee-b .32s linear 1.04s 5}
+.slate-scene[data-encounter] .slate-film-ribbon{animation:rp-rig-ribbon-drop 1.45s ease-out both}
+@keyframes rp-rig-tug{0%,100%{transform:none}20%,49%{transform:translate(13px,-1px) rotate(3deg)}32%{transform:translate(8px,1px) rotate(1deg)}59%,76%{transform:translate(4px,0)}}
+@keyframes rp-rig-strip-pull{0%,100%{transform:none}20%,49%{transform:scaleX(1.14)}32%{transform:scaleX(1.085)}59%,76%{transform:scaleX(1.04)}}
+@keyframes rp-rig-wheel-feed{0%,100%{transform:rotate(0)}20%,49%{transform:rotate(-34deg)}32%{transform:rotate(-21deg)}59%,76%{transform:rotate(-10deg)}}
+@keyframes rp-rig-perfs{0%,100%{stroke-dashoffset:0}20%,49%{stroke-dashoffset:-16}32%{stroke-dashoffset:-10}59%,76%{stroke-dashoffset:-5}}
+@keyframes rp-rig-escape{0%{transform:var(--slate-caught,none)}11%{transform:translateX(11px)}17%{transform:translateX(8px)}24%{transform:translate(5px,-8px) scale(.96,1.08)}33%{transform:translate(10px,1px) scale(1.05,.93)}39%{transform:translate(0,-2px) rotate(-10deg)}100%{transform:translate(-150vw,0) rotate(-13deg)}}
+@keyframes rp-rig-stumble-escape{0%{transform:var(--slate-caught,none)}11%{transform:translateX(11px)}17%{transform:translateX(8px)}24%{transform:translate(5px,-8px) scale(.96,1.08)}33%{transform:translate(-12px,1px) rotate(-24deg)}39%{transform:translate(-18px,-2px) rotate(12deg)}100%{transform:translate(-150vw,0) rotate(-13deg)}}
+@keyframes rp-rig-notice{0%,10%{transform:scaleX(.9) rotate(-6deg)}21%,31%{transform:scaleX(1) rotate(2deg)}41%,100%{transform:rotate(-9deg)}}
+@keyframes rp-rig-wide-eyes{0%,14%{transform:none}24%,33%{transform:scale(1.24,1.32)}44%,100%{transform:none}}
+@keyframes rp-rig-let-go{0%{visibility:visible}38%,100%{visibility:hidden}}
+@keyframes rp-rig-arms-visible{0%{visibility:hidden}38%,100%{visibility:visible}}
+@keyframes rp-rig-hip{0%,100%{transform:rotate(-31deg)}25%{transform:rotate(-12deg)}50%{transform:rotate(35deg)}75%{transform:rotate(10deg)}}
+@keyframes rp-rig-hip-b{0%,100%{transform:rotate(35deg)}25%{transform:rotate(10deg)}50%{transform:rotate(-31deg)}75%{transform:rotate(-12deg)}}
+@keyframes rp-rig-knee{0%,100%{transform:rotate(38deg)}25%{transform:rotate(62deg)}50%{transform:rotate(13deg)}75%{transform:rotate(0)}}
+@keyframes rp-rig-knee-b{0%,100%{transform:rotate(13deg)}25%{transform:rotate(0)}50%{transform:rotate(38deg)}75%{transform:rotate(62deg)}}
+@keyframes rp-rig-ribbon-drop{0%,62%{transform:scaleX(1.06)}85%{transform:scaleX(1.01) translateY(3px)}100%{transform:none}}
+@media(max-width:550px){.about-more-set{min-height:116px}.slate-reel-scene{width:min(100%,285px)}}
+@media(prefers-reduced-motion:reduce){.slate-scene *{animation:none!important}.slate-creature{display:none}}
