@@ -13,8 +13,10 @@ const reelStage=document.querySelector('.reel-stage'),motionButton=document.quer
   }
   sync();
   reduced.addEventListener('change', sync);
+  const trigger = section.querySelector('.about-copy') || section;
+  const threshold = 0.15;
   new IntersectionObserver((entries) => {
-    visible = entries.some((entry) => entry.isIntersecting);
+    visible = entries.some((entry) => entry.isIntersecting && entry.intersectionRatio >= threshold);
     sync();
-  }).observe(section);
+  }, { threshold }).observe(trigger);
 })();
