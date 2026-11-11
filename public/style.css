@@ -88,3 +88,34 @@ header{background:linear-gradient(180deg,#050709f7,#050709b8)}header nav{gap:cla
 @keyframes about-far-open{0%,48%{transform:scaleX(.7)}86%,100%{transform:scaleX(1)}}
 @media(max-width:900px){.about-light-beam{width:calc(100% + 84px);height:calc(100% + 62px)}.about-light-pool{inset:-28px -26px -37px}}
 @media(prefers-reduced-motion:reduce){.about-light .about-slate,.about-light .about-slate-sketch,.about-light .about-slate-leg,.about-light .about-slate-tap,.about-light .about-slate-free,.about-light-lit .about-haze{animation:none;transition:none}.about-light .about-slate{opacity:0}.about-light-lit .about-haze{opacity:.38}}
+
+/* Final About scene: an independent film lane below the copy, and an intact smaller reel. */
+.about-copy{--film-lane-height:clamp(89px,11vw,145px)}
+.about-light{bottom:calc(var(--film-lane-height) + 12px)}
+.about-film-lane{display:block;width:100%;height:var(--film-lane-height);margin-top:12px;overflow:visible;pointer-events:none}
+.about .reel-stage{scale:.92;transform-origin:center top}
+.about-film-floor{opacity:.15;transition:opacity 1s ease}
+.about-light-lit .about-film-floor{opacity:.84}
+.about-strip-mask{transform-origin:490px 90px;transform:scaleX(.085)}
+.about-spool-wheel{transform-origin:0 0}
+.about-pull-slate{opacity:0}
+.about-pull-foot-a,.about-pull-foot-b{transform-origin:1px -15px}
+.about-film-pulling .about-pull-slate{animation:rp-pull-operator 2.35s linear both}
+.about-film-pulling .about-strip-mask{animation:rp-film-unspool 2.35s linear both}
+.about-film-pulling .about-spool-wheel{animation:rp-spool-turn 2.35s linear both}
+.about-film-pulling .about-pull-foot-a{animation:rp-pull-step .29s ease-in-out infinite alternate}
+.about-film-pulling .about-pull-foot-b{animation:rp-pull-step .29s ease-in-out infinite alternate-reverse}
+.about-film-done .about-strip-mask{transform:scaleX(.96)}
+.about-film-done .about-spool-wheel{transform:rotate(-480deg)}
+/* Wait in darkness; the first illumination is on the actual tap contact frame. */
+.about-light-waiting .about-light-beam,.about-light-waiting .about-light-pool,.about-light-waiting .about-lens{opacity:0}
+@keyframes about-slate-travel{0%,2%{opacity:0;transform:translateX(83px)}5%{opacity:1}21%,81%{opacity:1;transform:translateX(0)}89%{transform:translate(12px,5px)}100%{opacity:0;transform:translate(52px,42px)}}
+@keyframes rp-pull-operator{0%{opacity:0;transform:translate(65px,-42px)}12%{opacity:1;transform:translate(23px,-9px)}22%{opacity:1;transform:translate(0,0)}86%,92%{opacity:1;transform:translate(-363px,0)}100%{opacity:0;transform:translate(-388px,6px)}}
+@keyframes rp-film-unspool{0%,22%{transform:scaleX(.085)}86%,100%{transform:scaleX(.96)}}
+@keyframes rp-spool-turn{0%,22%{transform:rotate(0)}86%,100%{transform:rotate(-480deg)}}
+@keyframes rp-pull-step{from{transform:rotate(-19deg)}to{transform:rotate(22deg)}}
+@media(max-width:550px){.about-copy{--film-lane-height:91px}.about .reel-stage{scale:.93}}
+@media(prefers-reduced-motion:reduce){.about-film-lane *, .about-film-floor{animation:none!important;transition:none}.about-pull-slate{opacity:0}}
+
+/* Keep the lens and beam dark before the script initializes. */
+.about-light-beam,.about-light-pool,.about-lens{opacity:0}.about-light-lit .about-light-beam{opacity:.78}.about-light-lit .about-light-pool{opacity:.82}.about-light-lit .about-lens{opacity:1}
