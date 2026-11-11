@@ -20,3 +20,65 @@ const reelStage=document.querySelector('.reel-stage'),motionButton=document.quer
     sync();
   }, { threshold }).observe(trigger);
 })();
+
+/* The visitor catches the slate only after crossing a real viewport threshold. */
+(() => {
+  const section = document.getElementById('about');
+  const scene = section?.querySelector('.slate-scene');
+  const creature = scene?.querySelector('.slate-creature');
+  if (!creature || !('IntersectionObserver' in window)) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const trigger = section.querySelector('.about-copy') || section;
+  const variants = ['caught', 'trip', 'peek', 'statue'];
+  let bag = [];
+  let last = '';
+  let armed = true;
+  let resetTimer;
+
+  function nextEncounter() {
+    if (!bag.length) {
+      bag = [...variants];
+      for (let i = bag.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [bag[i], bag[j]] = [bag[j], bag[i]];
+      }
+      if (bag.at(-1) === last) [bag[0], bag[bag.length - 1]] = [bag[bag.length - 1], bag[0]];
+    }
+    last = bag.pop();
+    return last;
+  }
+
+  function reset() {
+    clearTimeout(resetTimer);
+    resetTimer = undefined;
+    delete scene.dataset.encounter;
+    scene.style.removeProperty('--slate-caught');
+    armed = true;
+  }
+
+  reduced.addEventListener('change', () => {
+    if (reduced.matches) {
+      reset();
+      section.classList.remove('slate-near');
+    }
+  });
+
+  new IntersectionObserver(([entry]) => {
+    section.classList.toggle('slate-near', entry.isIntersecting && !reduced.matches);
+  }, { rootMargin: '180px 0px' }).observe(section);
+
+  new IntersectionObserver(([entry]) => {
+    if (reduced.matches) return;
+    if (!entry.isIntersecting || entry.intersectionRatio <= 0.04) {
+      if (!armed && resetTimer === undefined) resetTimer = setTimeout(reset, 240);
+      return;
+    }
+    clearTimeout(resetTimer);
+    resetTimer = undefined;
+    if (!armed || entry.intersectionRatio < 0.18) return;
+    armed = false;
+    const pose = getComputedStyle(creature).transform;
+    scene.style.setProperty('--slate-caught', pose === 'none' ? 'translateX(-113%)' : pose);
+    scene.dataset.encounter = nextEncounter();
+  }, { threshold: [0, 0.04, 0.18] }).observe(trigger);
+})();

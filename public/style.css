@@ -76,3 +76,47 @@ header{background:linear-gradient(180deg,#050709f7,#050709b8)}header nav{gap:cla
 @keyframes about-bottom-open{0%,44%{transform:rotate(26deg)}90%,100%{transform:rotate(0)}}
 @keyframes about-near-open{0%,44%{transform:scaleX(.56) translateX(3px)}90%,100%{transform:scaleX(1)}}
 @keyframes about-far-open{0%,44%{transform:scaleX(.7)}90%,100%{transform:scaleX(1)}}
+
+/* The supplied slate artwork is articulated behind the original moving frames. */
+.slate-scene{--slate-size:clamp(52px,6.2vw,98px);position:absolute;inset:auto 6% 67px auto;width:min(46%,260px);height:calc(var(--slate-size)*1.32);pointer-events:none}
+.slate-creature{position:absolute;width:var(--slate-size);height:auto;right:0;bottom:0;overflow:visible;mix-blend-mode:screen;transform-origin:center bottom;transform:translateX(-113%) rotate(-4deg)}
+.slate-creature-body,.slate-creature-head,.slate-creature-eyes,.slate-leg{transform-box:view-box}
+.slate-creature-body{transform-origin:320px 932px}
+.slate-creature-head{transform-origin:318px 564px}
+.slate-creature-eyes{transform-origin:335px 426px}
+.slate-leg-l{transform-origin:248px 738px}
+.slate-leg-r{transform-origin:376px 735px}
+.slate-hideout{position:absolute;right:-9px;bottom:0;width:calc(var(--slate-size)*1.16);height:calc(var(--slate-size)*1.07);border:1px solid #735337;border-radius:5px;background:linear-gradient(155deg,#221c17,#131313 30%,#090b0c 78%);box-shadow:inset 0 0 0 3px #ffffff0c,0 8px 17px #0007}
+.slate-hideout:before{content:"";position:absolute;width:34%;height:9%;border:1px solid #74614e;border-bottom:0;left:33%;top:-10%;border-radius:4px 4px 0 0;background:#131312}
+.slate-hideout:after{content:"";position:absolute;left:0;right:0;top:27%;border-top:1px solid #6e4a32;border-bottom:1px solid #111;height:4px}
+.slate-hideout i{position:absolute;width:8%;height:15%;top:21%;left:14%;border:1px solid #79634b;background:linear-gradient(#8d7457,#30291f);border-radius:1px}
+.slate-hideout i:nth-child(2){left:auto;right:14%}
+.slate-hideout i:nth-child(3){top:68%;left:31%;width:38%;height:15%;border-color:#524232;background:#201810}
+.slate-near .slate-scene:not([data-encounter]) .slate-creature{animation:rp-slate-roam 7.6s ease-in-out infinite both}
+.slate-near .slate-scene:not([data-encounter]) .slate-creature-head{animation:rp-slate-curiosity 7.6s ease-in-out infinite}
+.slate-near .slate-scene:not([data-encounter]) .slate-leg-l{animation:rp-slate-amble .45s ease-in-out infinite alternate}
+.slate-near .slate-scene:not([data-encounter]) .slate-leg-r{animation:rp-slate-amble .45s ease-in-out infinite alternate-reverse}
+.slate-scene[data-encounter]{--slate-duration:3.45s}
+.slate-scene[data-encounter] .slate-creature{animation:rp-slate-caught var(--slate-duration) linear both}
+.slate-scene[data-encounter="trip"] .slate-creature{animation-name:rp-slate-trip}
+.slate-scene[data-encounter="peek"] .slate-creature{animation-name:rp-slate-peek}
+.slate-scene[data-encounter="statue"] .slate-creature{animation-name:rp-slate-statue;--slate-duration:3.8s}
+.slate-scene[data-encounter] .slate-creature-head{animation:rp-slate-look var(--slate-duration) ease-in-out both}
+.slate-scene[data-encounter] .slate-creature-eyes{animation:rp-slate-eyes var(--slate-duration) ease-in-out both}
+.slate-scene[data-encounter] .slate-creature-body{animation:rp-slate-flinch var(--slate-duration) ease-in-out both}
+.slate-scene[data-encounter] .slate-leg-l{animation:rp-slate-dash-left var(--slate-duration) ease-in-out both}
+.slate-scene[data-encounter] .slate-leg-r{animation:rp-slate-dash-right var(--slate-duration) ease-in-out both}
+@keyframes rp-slate-roam{0%,100%{transform:translateX(-113%) rotate(-4deg)}22%{transform:translateX(-152%) rotate(-7deg)}37%{transform:translateX(-152%) rotate(2deg)}48%{transform:translateX(-83%) rotate(5deg)}62%{transform:translateX(-19%) scale(.88)}73%{transform:translateX(-38%) translateY(-15%) rotate(-8deg)}82%{transform:translateX(-13%) scale(.88)}}
+@keyframes rp-slate-curiosity{0%,100%{transform:rotate(-3deg)}27%{transform:rotate(8deg) scaleX(.86)}42%{transform:rotate(-6deg)}72%{transform:rotate(-10deg) scaleX(.92)}}
+@keyframes rp-slate-amble{from{transform:rotate(-8deg)}to{transform:rotate(9deg)}}
+@keyframes rp-slate-look{0%,8%{transform:scaleX(.84) rotate(-6deg)}23%,35%{transform:scaleX(1) rotate(0)}42%,51%{transform:scaleX(.84) rotate(10deg)}62%,75%{transform:rotate(-11deg)}100%{transform:none}}
+@keyframes rp-slate-eyes{0%,22%,100%{transform:scale(1)}29%,37%{transform:scale(1.2,1.26)}58%{transform:scale(1)}72%,80%{transform:scale(1.12)}}
+@keyframes rp-slate-flinch{0%,24%,100%{transform:none}32%{transform:scale(.93,1.12)}37%{transform:scale(1.08,.88)}51%{transform:scale(.96,1.04)}67%,94%{transform:scale(.89,.89)}76%,86%{transform:scale(.95,.95)}}
+@keyframes rp-slate-dash-left{0%,37%,66%,100%{transform:none}43%,53%,61%{transform:rotate(-22deg)}48%,57%{transform:rotate(21deg)}}
+@keyframes rp-slate-dash-right{0%,37%,66%,100%{transform:none}43%,53%,61%{transform:rotate(21deg)}48%,57%{transform:rotate(-22deg)}}
+@keyframes rp-slate-caught{0%,22%{transform:var(--slate-caught)}36%{transform:translate(-127%,-10%) rotate(-9deg)}43%{transform:translateX(-142%) rotate(-14deg)}64%,73%{transform:translateX(0) scale(.86)}82%,88%{transform:translate(-24%,-20%) rotate(-8deg)}94%,100%{transform:translateX(0) scale(.86)}}
+@keyframes rp-slate-trip{0%,22%{transform:var(--slate-caught)}34%{transform:translate(-114%,-8%) rotate(-8deg)}45%{transform:translateX(-84%) rotate(29deg)}51%{transform:translateX(-70%) rotate(-19deg) scale(1.06,.87)}68%,75%{transform:translateX(0) scale(.86)}83%,89%{transform:translate(-24%,-20%) rotate(-8deg)}96%,100%{transform:translateX(0) scale(.86)}}
+@keyframes rp-slate-peek{0%,19%{transform:var(--slate-caught)}26%{transform:translate(-45%,-18%) rotate(-12deg)}39%,61%{transform:translateX(0) scale(.86)}72%,82%{transform:translate(-27%,-22%) rotate(-8deg)}88%,100%{transform:translateX(0) scale(.86)}}
+@keyframes rp-slate-statue{0%,39%{transform:var(--slate-caught)}45%{transform:translateX(-115%) rotate(-10deg)}67%,74%{transform:translateX(0) scale(.86)}82%,89%{transform:translate(-25%,-20%) rotate(-9deg)}94%,100%{transform:translateX(0) scale(.86)}}
+@media(max-width:550px){.slate-scene{--slate-size:55px;right:5%;bottom:71px}}
+@media(prefers-reduced-motion:reduce){.slate-scene{display:none}}
