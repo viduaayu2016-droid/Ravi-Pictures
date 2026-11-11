@@ -82,3 +82,27 @@ const reelStage=document.querySelector('.reel-stage'),motionButton=document.quer
     scene.dataset.encounter = nextEncounter();
   }, { threshold: [0, 0.04, 0.18] }).observe(trigger);
 })();
+
+/* Keep the photo globe still off-screen and respect the visitor's pause choice. */
+(() => {
+  const globe = document.getElementById('photo-globe');
+  const button = globe?.querySelector('.globe-motion');
+  if (!button || !('IntersectionObserver' in window)) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let paused = false;
+  let inView = false;
+  function sync() {
+    globe.classList.toggle('globe-visible', inView && !reduced.matches);
+    globe.classList.toggle('globe-paused', paused);
+    button.hidden = reduced.matches;
+    button.setAttribute('aria-pressed', String(paused));
+    button.textContent = paused ? 'Resume globe' : 'Pause globe';
+  }
+  button.addEventListener('click', () => { paused = !paused; sync(); });
+  reduced.addEventListener('change', sync);
+  new IntersectionObserver(([entry]) => {
+    inView = entry.isIntersecting;
+    sync();
+  }).observe(globe);
+  sync();
+})();
