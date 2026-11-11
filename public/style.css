@@ -148,3 +148,19 @@ header{background:linear-gradient(180deg,#050709f7,#050709b8)}header nav{gap:cla
  .about::before,.about::after,.about-light-lit .about-fresnel,.about-film-done .about-film-lane{animation:none;transition:none}
  .about-light-lit::after{opacity:1}
 }
+
+/* Use the photographed lamp as the sole fixture. Its lens sits at 64% / 23.6%. */
+.about::before,.about-light-running::before{opacity:1;animation:none}
+.about-lens-operator{--operator-size:clamp(92px,10vw,160px);position:absolute;z-index:1;left:calc(64% - var(--operator-size)/2);top:calc(23.6% - var(--operator-size)*.30);width:var(--operator-size);height:var(--operator-size);overflow:visible;pointer-events:none}
+.about-atmosphere{position:absolute;inset:6% 28% 15% 15%;z-index:-1;pointer-events:none;overflow:hidden;mask-image:radial-gradient(ellipse at 67% 44%,#000,transparent 71%)}
+.about-light-lit .about-atmosphere .about-haze{opacity:.42}
+.about-lens-rubbing .about-lens-operator .about-slate{animation:rp-lens-walk 2.65s linear both}
+.about-lens-rubbing .about-lens-operator .about-slate-sketch{animation:rp-lens-lean 2.65s ease-in-out both}
+.about-lens-rubbing .about-lens-operator .about-slate-tap{animation:rp-lens-rub 2.65s ease-in-out both}
+.about-lens-rubbing .about-lens-operator .about-slate-leg-a{animation:about-slate-stride 2.65s linear both}
+.about-lens-rubbing .about-lens-operator .about-slate-leg-b{animation:about-slate-stride-other 2.65s linear both}
+@keyframes rp-lens-walk{0%,3%{opacity:0;transform:translateX(62px)}8%{opacity:1}24%,78%{opacity:1;transform:translateX(0)}94%,100%{opacity:0;transform:translate(40px,23px)}}
+@keyframes rp-lens-lean{0%,13%{transform:rotate(-8deg)}7%,18%{transform:translateY(-3px) rotate(-8deg)}24%,72%{transform:none}81%{transform:rotate(8deg)}100%{transform:translateY(-2px)}}
+@keyframes rp-lens-rub{0%,18%{transform:rotate(-64deg)}30%{transform:translate(1px,-6px)}37%{transform:translate(-3px,1px)}44%{transform:translate(2px,6px)}51%{transform:translate(5px,-1px)}58%{transform:translate(1px,-6px)}65%{transform:translate(-3px,1px)}72%{transform:translate(2px,6px)}83%,100%{transform:rotate(-55deg)}}
+@media(max-width:900px){.about::before{background-size:100% auto;background-position:center top}.about-lens-operator{--operator-size:clamp(64px,14vw,112px);top:calc(13.28vw - var(--operator-size)*.30)}}
+@media(prefers-reduced-motion:reduce){.about-lens-operator{display:none}}
