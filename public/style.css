@@ -164,3 +164,19 @@ header{background:linear-gradient(180deg,#050709f7,#050709b8)}header nav{gap:cla
 @keyframes rp-lens-rub{0%,18%{transform:rotate(-64deg)}30%{transform:translate(1px,-6px)}37%{transform:translate(-3px,1px)}44%{transform:translate(2px,6px)}51%{transform:translate(5px,-1px)}58%{transform:translate(1px,-6px)}65%{transform:translate(-3px,1px)}72%{transform:translate(2px,6px)}83%,100%{transform:rotate(-55deg)}}
 @media(max-width:900px){.about::before{background-size:100% auto;background-position:center top}.about-lens-operator{--operator-size:clamp(64px,14vw,112px);top:calc(13.28vw - var(--operator-size)*.30)}}
 @media(prefers-reduced-motion:reduce){.about-lens-operator{display:none}}
+
+/* Single photographic Fresnel: lens polish, two blinks, then open the shutters. */
+.about::before{filter:brightness(.17)}
+.about-light-lit::before{filter:brightness(1)}
+.about-photo-shutters{--door-size:clamp(35px,5.4vw,92px);position:absolute;z-index:0;left:64%;top:23.6%;width:var(--door-size);height:var(--door-size);transform:translate(-50%,-50%) rotate(-10deg);perspective:220px;pointer-events:none;opacity:.95}
+.about-photo-shutters i{position:absolute;inset:0 0 50%;background:linear-gradient(172deg,#39322b,#1b1510 58%,#100e0c);border:1px solid #ad7b4263;clip-path:polygon(6% 0,94% 0,100% 100%,0 100%);transform-origin:center top}
+.about-photo-shutters i+i{inset:50% 0 0;clip-path:polygon(0 0,100% 0,94% 100%,6% 100%);transform-origin:center bottom}
+.about-light-lit .about-photo-shutters{opacity:0}
+.about-photo-cue::before{animation:rp-photo-light-cue 1.45s linear both}
+.about-photo-cue .about-photo-shutters i{animation:rp-photo-door-top 1.45s ease both}
+.about-photo-cue .about-photo-shutters i+i{animation-name:rp-photo-door-bottom}
+@keyframes rp-photo-light-cue{0%,5%{filter:brightness(.17)}12%{filter:brightness(.83)}23%{filter:brightness(.22)}33%{filter:brightness(.94)}44%{filter:brightness(.24)}55%{filter:brightness(.46)}95%,100%{filter:brightness(1)}}
+@keyframes rp-photo-door-top{0%,48%{transform:none;opacity:1}90%,100%{transform:rotateX(85deg);opacity:0}}
+@keyframes rp-photo-door-bottom{0%,48%{transform:none;opacity:1}90%,100%{transform:rotateX(-85deg);opacity:0}}
+@media(max-width:900px){.about-photo-shutters{top:13.28vw}}
+@media(prefers-reduced-motion:reduce){.about::before{filter:brightness(1)}.about-photo-shutters{display:none}.about-photo-cue::before{animation:none}}
