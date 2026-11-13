@@ -155,13 +155,13 @@ header{background:linear-gradient(180deg,#050709f7,#050709b8)}header nav{gap:cla
 .globe-heading h2{margin-bottom:0}
 .globe-viewport{--globe-radius:clamp(105px,23vw,345px);position:relative;width:min(100%,1120px);height:clamp(310px,55vw,760px);margin:0 auto;pointer-events:none}
 .globe-viewport::before{content:"";position:absolute;inset:12% 11%;background:radial-gradient(ellipse at center,#ff981a22,transparent 65%)}
-.globe-viewport::after{content:"";position:absolute;inset:42% 4% 38%;border:1px solid #fbb46526;border-radius:50%;transform:rotate(-13deg);z-index:-1}
+.globe-viewport::after{content:"";position:absolute;inset:42% 4% 38%;border:1px solid #fbb46526;border-radius:50%;z-index:-1}
 .globe-space{position:absolute;inset:0;perspective:clamp(620px,105vw,1600px);display:grid;place-items:center}
 .globe-tilt,.globe-spin{position:relative;width:0;height:0;transform-style:preserve-3d}
-.globe-tilt{transform:rotateZ(-13deg) scaleY(.83)}
+.globe-tilt{transform:scaleY(.74)}
 .globe-spin{transform:rotateY(-16deg);animation:rp-photo-globe-rotate 48s linear infinite;animation-play-state:paused}
 .globe-visible:not(.globe-paused) .globe-spin{animation-play-state:running}
-.globe-tile{position:absolute;left:0;top:0;width:calc(var(--globe-radius)*.50);height:calc(var(--globe-radius)*.37);object-fit:cover;object-position:center 44%;border-radius:4px;border:1px solid #ffc06d6e;background:#16100c;box-shadow:0 3px 12px #0009;backface-visibility:hidden;transform:translate(-50%,-50%) rotateY(var(--lon)) rotateX(var(--lat)) translateZ(var(--globe-radius));filter:brightness(var(--tile-tone))}
+.globe-tile{position:absolute;left:0;top:0;width:calc(var(--globe-radius)*.56);height:calc(var(--globe-radius)*.49);object-fit:cover;object-position:center 44%;border-radius:4px;border:1px solid #ffc06d6e;background:#16100c;box-shadow:0 3px 12px #0009;backface-visibility:hidden;transform:translate(-50%,-50%) rotateY(var(--lon)) rotateX(var(--lat)) translateZ(var(--globe-radius));filter:brightness(var(--tile-tone))}
 .globe-actions{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;margin-top:4px}
 .globe-motion{color:#e0c5a8;border:1px solid #806245;background:#15100c;border-radius:999px;padding:12px 18px;font:inherit;font-size:12px;cursor:pointer}
 .globe-motion:hover{color:#fff;border-color:var(--orange)}
