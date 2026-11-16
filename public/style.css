@@ -190,3 +190,24 @@ header{background:linear-gradient(180deg,#050709f7,#050709b8)}header nav{gap:cla
 .photo-globe button:focus-visible{outline:2px solid #ffad72;outline-offset:2px}
 .photo-globe.dome-ready .globe-viewport{display:none}
 @media(max-width:550px){.dome-canvas{aspect-ratio:1.5 / 1}.dome-guide{margin-top:0}}
+
+/* The expanded photo gallery stays available through See More and Our Work. */
+.gallery-expanded{display:none;padding:24px 5% 52px;background:#0b0807}
+.gallery-expanded:target{display:block}
+.gallery-close{margin-bottom:20px}
+.clients{position:relative;overflow:hidden;isolation:isolate;text-align:center;padding-block:clamp(56px,7vw,110px);background:radial-gradient(ellipse at top left,#8c2a07 0%,#331106 18%,transparent 41%),radial-gradient(ellipse at bottom right,#4e1b08,transparent 45%),#070504;border-top:1px solid #ed702931}
+.clients::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(123deg,transparent 5%,#ff903d12 12%,transparent 16%,#fe600a12 23%,transparent 31%),radial-gradient(ellipse at 16% 100%,#e95d1229,transparent 53%)}
+.clients-heading svg{width:clamp(45px,5.5vw,78px);color:#ff6a16;display:block;margin:0 auto 4px}
+.clients-heading h2{display:flex;align-items:center;justify-content:center;gap:.24em;font-weight:400;font-size:clamp(38px,5.6vw,82px);margin:0;color:#fff;white-space:nowrap}
+.clients-heading h2 strong{font-weight:650;color:#ff6a16}
+.clients-heading h2::before,.clients-heading h2::after{content:"";height:1px;width:clamp(18px,11vw,170px);margin-inline:clamp(2px,2vw,28px);background:linear-gradient(90deg,transparent,#ff721c)}
+.clients-heading h2::after{transform:scaleX(-1)}
+.clients .clients-categories{display:flex;justify-content:center;flex-wrap:wrap;gap:.55em 1em;margin:16px 0 0;font-size:clamp(9px,1.1vw,14px);letter-spacing:.24em;text-transform:uppercase;color:#ded5ca}
+.clients-categories span+span::before{content:"|";color:#af7557;margin-right:1em}
+.clients-grid{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,24px);max-width:1280px;margin:clamp(32px,5vw,74px) auto 0;padding:0}
+.client-card{display:grid;place-items:center;position:relative;isolation:isolate;aspect-ratio:1.85;min-width:0;padding:14%;color:#baaaa0}
+.client-card::before{content:"";position:absolute;inset:0 3%;z-index:-1;border:1px solid #a64714;border-radius:clamp(10px,1.6vw,23px);transform:skewX(-6deg);background:radial-gradient(ellipse at 18% -15%,#a44316a1,transparent 58%),linear-gradient(145deg,#201008,#0c0705 76%);box-shadow:inset 0 0 20px #ff6b1113}
+.client-card:nth-child(4n+2)::before,.client-card:nth-child(4n+3)::before{background:radial-gradient(ellipse at 72% 110%,#ce4c1640,transparent 53%),linear-gradient(145deg,#241208,#0c0705 76%)}
+.client-card span{font-size:clamp(10px,1.25vw,14px);letter-spacing:.04em}
+.client-card img{width:100%;height:100%;object-fit:contain}
+@media(max-width:740px){.clients-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.client-card::before{transform:skewX(-3deg)}.clients-categories span+span::before{display:none}}
