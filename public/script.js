@@ -83,26 +83,100 @@ const reelStage=document.querySelector('.reel-stage'),motionButton=document.quer
   }, { threshold: [0, 0.04, 0.18] }).observe(trigger);
 })();
 
-/* Keep the photo globe still off-screen and respect the visitor's pause choice. */
+
+
+/* Curved photo tiles projected onto the visible face of an oval dome. */
 (() => {
-  const globe = document.getElementById('photo-globe');
-  const button = globe?.querySelector('.globe-motion');
-  if (!button || !('IntersectionObserver' in window)) return;
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let paused = false;
-  let inView = false;
-  function sync() {
-    globe.classList.toggle('globe-visible', inView && !reduced.matches);
-    globe.classList.toggle('globe-paused', paused);
-    button.hidden = reduced.matches;
-    button.setAttribute('aria-pressed', String(paused));
-    button.textContent = paused ? 'Resume globe' : 'Pause globe';
+  const gallery = document.getElementById('photo-globe');
+  const canvas = gallery?.querySelector('.dome-canvas');
+  const ctx = canvas?.getContext('2d');
+  if (!ctx || !('IntersectionObserver' in window) || !('ResizeObserver' in window)) return;
+  const sources = [...new Set([...gallery.querySelectorAll('.globe-tile')].map(image => image.src))];
+  const photos = sources.map(src => { const image = new Image(); image.addEventListener('load', queue); image.src = src; return image; });
+  const dots = [...gallery.querySelectorAll('.dome-dots button')];
+  const motion = gallery.querySelector('.globe-motion');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const tau = 2 * Math.PI;
+  const cols = 14;
+  let turn = 0, goal = 0, last = 0, frame = 0, visible = false, paused = false, drag;
+  let w = 0, h = 0;
+  function queue() { if (!frame) frame = requestAnimationFrame(render); }
+  function wrap(angle) { return ((angle % tau) + tau) % tau; }
+  function updateControls() {
+    const active = Math.round(wrap(goal) / (tau / 4)) % 4;
+    dots.forEach((dot, index) => dot.setAttribute('aria-pressed', String(index === active)));
+    motion.hidden = reduced.matches;
+    motion.textContent = paused ? 'Resume globe' : 'Pause globe';
+    motion.setAttribute('aria-pressed', String(paused));
   }
-  button.addEventListener('click', () => { paused = !paused; sync(); });
-  reduced.addEventListener('change', sync);
-  new IntersectionObserver(([entry]) => {
-    inView = entry.isIntersecting;
-    sync();
-  }).observe(globe);
-  sync();
+  function triangle(image, a,b,c, u,v,t) {
+    const den = (v[0]-u[0])*(t[1]-u[1])-(t[0]-u[0])*(v[1]-u[1]);
+    if (Math.abs(den)<.001) return;
+    const A=((b[0]-a[0])*(t[1]-u[1])-(c[0]-a[0])*(v[1]-u[1]))/den;
+    const B=((b[1]-a[1])*(t[1]-u[1])-(c[1]-a[1])*(v[1]-u[1]))/den;
+    const C=((c[0]-a[0])*(v[0]-u[0])-(b[0]-a[0])*(t[0]-u[0]))/den;
+    const D=((c[1]-a[1])*(v[0]-u[0])-(b[1]-a[1])*(t[0]-u[0]))/den;
+    ctx.save(); ctx.beginPath(); ctx.moveTo(...a); ctx.lineTo(...b); ctx.lineTo(...c); ctx.closePath(); ctx.clip();
+    ctx.transform(A,B,C,D,a[0]-A*u[0]-C*u[1],a[1]-B*u[0]-D*u[1]); ctx.drawImage(image,0,0); ctx.restore();
+  }
+  function render(time) {
+    frame=0;
+    const dt=last ? Math.min(32,time-last) : 16;
+    last=time;
+    if(!w||!h)return;
+    if(visible&&!paused&&!drag&&!reduced.matches) goal+=dt*.00014;
+    turn=reduced.matches||drag ? goal : turn+(goal-turn)*Math.min(1,dt*.012);
+    ctx.clearRect(0,0,w,h);
+    const cx=w*.5, cy=h*.88, rx=w*.458, ry=h*.79;
+    const point=(lon,lat)=>[cx+rx*Math.cos(lat)*Math.sin(lon),cy-ry*Math.sin(lat)];
+    ctx.save();
+    ctx.beginPath();ctx.ellipse(cx,cy,rx,ry,0,Math.PI,tau);ctx.strokeStyle='#ff963e';ctx.lineWidth=2;ctx.shadowColor='#ff691b';ctx.shadowBlur=24;ctx.stroke();
+    ctx.shadowBlur=0;
+    ctx.beginPath();ctx.ellipse(cx,cy,rx,ry,0,0,tau);ctx.clip();
+    ctx.fillStyle='#160a05';ctx.fillRect(0,0,w,h);
+    const edges=[-.22,.20,.53,.87,1.17,1.57];
+    const step=tau/cols;
+    for(let row=0;row<edges.length-1;row++)for(let col=0;col<cols;col++){
+      const center=wrap(col*step+turn+Math.PI)-Math.PI;
+      const start=center-step*.48,end=center+step*.48;
+      const l=Math.max(-Math.PI/2,start),r=Math.min(Math.PI/2,end);
+      if(r<=l)continue;
+      const b=edges[row]+.012,top=edges[row+1]-.012;
+      const image=photos[(col+row*Math.max(1,photos.length-1))%photos.length];
+      if(!image?.naturalWidth)continue;
+      const iw=image.naturalWidth,ih=image.naturalHeight;
+      for(let y=0;y<2;y++)for(let x=0;x<3;x++){
+        const p=l+(r-l)*x/3,q=l+(r-l)*(x+1)/3,low=b+(top-b)*y/2,high=b+(top-b)*(y+1)/2;
+        const a=point(p,high),d=point(q,high),e=point(q,low),f=point(p,low);
+        const u=(p-start)/(end-start)*iw,v=(q-start)/(end-start)*iw,s=ih*(1-(y+1)/2),t=ih*(1-y/2);
+        triangle(image,a,d,e,[u,s],[v,s],[v,t]);triangle(image,a,e,f,[u,s],[v,t],[u,t]);
+      }
+    }
+    const light=ctx.createLinearGradient(0,cy-ry,0,cy);
+    light.addColorStop(0,'#ff9a4755');light.addColorStop(.23,'#ff71150a');light.addColorStop(.67,'#09040300');light.addColorStop(1,'#080403');
+    ctx.fillStyle=light;ctx.fillRect(0,0,w,h);ctx.restore();
+    ctx.save();ctx.beginPath();ctx.ellipse(cx,h*.69,rx*1.08,h*.18,0,.05,Math.PI-.05);ctx.strokeStyle='#ff781bc4';ctx.lineWidth=2.5;ctx.shadowColor='#ff7c20';ctx.shadowBlur=16;ctx.stroke();ctx.restore();
+    const fade=ctx.createLinearGradient(0,h*.83,0,h);fade.addColorStop(0,'#08040300');fade.addColorStop(1,'#080403');
+    ctx.fillStyle=fade;ctx.fillRect(0,h*.83,w,h*.17);
+    updateControls();
+    if(visible&&((!paused&&!reduced.matches)||Math.abs(goal-turn)>.0001))queue();else last=0;
+  }
+  function resize() {
+    const rect=canvas.getBoundingClientRect();w=rect.width;h=rect.height;
+    const ratio=Math.min(1.5,devicePixelRatio||1);canvas.width=Math.round(w*ratio);canvas.height=Math.round(h*ratio);
+    ctx.setTransform(ratio,0,0,ratio,0,0);queue();
+  }
+  function move(amount){goal+=amount;queue();}
+  gallery.querySelector('.dome-prev').onclick=()=>move(-tau/4);
+  gallery.querySelector('.dome-next').onclick=()=>move(tau/4);
+  dots.forEach((dot,i)=>dot.onclick=()=>{let delta=i*tau/4-wrap(goal);if(delta>Math.PI)delta-=tau;if(delta< -Math.PI)delta+=tau;move(delta);});
+  canvas.addEventListener('pointerdown',event=>{if(event.button!==0)return;drag={id:event.pointerId,x:event.clientX,angle:turn};canvas.setPointerCapture(event.pointerId);});
+  canvas.addEventListener('pointermove',event=>{if(drag?.id!==event.pointerId)return;goal=drag.angle+(event.clientX-drag.x)*tau/Math.max(w,1);queue();});
+  canvas.addEventListener('lostpointercapture',()=>{drag=null;queue();});
+  motion.onclick=()=>{paused=!paused;updateControls();queue();};
+  reduced.addEventListener('change',()=>{updateControls();queue();});
+  gallery.classList.add('dome-ready');gallery.querySelector('.dome-interaction').hidden=false;
+  new ResizeObserver(resize).observe(canvas);
+  new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;if(visible)queue();}).observe(canvas);
+  updateControls();resize();
 })();
